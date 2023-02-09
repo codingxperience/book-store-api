@@ -1,0 +1,44 @@
+# LOCALHOST
+
+### Get all books 
+GET http://localhost:3000/books 
+
+### Get One book 1
+GET http://localhost:3000/books/63e3ef2174a11f8a0f3da14f
+
+### Get book 2 
+GET http://localhost:3000/books/63e3ef2174a11f8a0f3da150 
+
+### Get book 3 
+GET http://localhost:3000/books/63e3ef2174a11f8a0f3da151 
+
+### Create book 
+POST http://localhost:3000/books 
+content-type: application/json
+
+{
+  "bookTitle": "The Great Gasby", 
+  "authorName": "F. Scott Fitzgerald", 
+  "bookPrice": "6.67", 
+  "bookEdition": "1st edition",
+  "publishYear": "1925", 
+  "pageNumber": "180", 
+  "BookGenre": ["Historical Fiction", "American", "Romance"]
+} 
+
+### PUT book 
+PUT http://localhost:3000/books/63e3ef2174a11f8a0f3da14f
+content-type: application/json
+
+{
+  "bookTitle": "To Kill a Mockingbird", 
+  "authorName": "Harper Lee", 
+  "bookPrice": "8.67", 
+  "bookEdition": "1st edition", 
+  "publishYear": "1960", 
+  "pageNumber": "323", 
+  "BookGenre": ["Historical Fiction", "American", "Young Adult"]
+} 
+
+### DELETE book 
+DELETE http://localhost:3000/books/63e3ef2174a11f8a0f3da14f 
