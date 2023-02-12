@@ -17,13 +17,13 @@ POST http://localhost:3000/books
 content-type: application/json
 
 {
-  "bookTitle": "The Great Gasby", 
-  "authorName": "F. Scott Fitzgerald", 
+  "bookTitle": "Akibwa The Great Lord", 
+  "authorName": "Chinua Akibe", 
   "bookPrice": "6.67", 
   "bookEdition": "1st edition",
-  "publishYear": "1925", 
+  "publishYear": "1990", 
   "pageNumber": "180", 
-  "BookGenre": ["Historical Fiction", "American", "Romance"]
+  "BookGenre": ["Historical Fiction", "African", "mestry"]
 } 
 
 ### PUT book 
@@ -41,5 +41,49 @@ content-type: application/json
 } 
 
 ### DELETE book 
-DELETE http://localhost:3000/books/63e3ef2174a11f8a0f3da14f 
+DELETE http://localhost:3000/books/63e54ddfa04d97cb5ae44278
 
+// PRODUCTION
+
+### Get all books 
+GET https://offs341-05.onrender.com/books 
+
+### Get One book 1
+GET https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da14f
+
+### Get book 2 
+GET https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da150 
+
+### Get book 3 
+GET https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da151 
+
+### Create book 
+POST https://offs341-05.onrender.com/books 
+content-type: application/json
+
+{
+  "bookTitle": "Akibwa The Great Lord", 
+  "authorName": "Chinua Akibe", 
+  "bookPrice": "6.67", 
+  "bookEdition": "1st edition",
+  "publishYear": "1990", 
+  "pageNumber": "180", 
+  "BookGenre": ["Historical Fiction", "African", "mestry"]
+} 
+
+### PUT book 
+PUT https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da14f
+content-type: application/json
+
+{
+  "bookTitle": "To Kill a Mockingbird", 
+  "authorName": "Harper Lee", 
+  "bookPrice": "8.67", 
+  "bookEdition": "1st edition", 
+  "publishYear": "1960", 
+  "pageNumber": "323", 
+  "BookGenre": ["Historical Fiction", "American", "Young Adult"]
+} 
+
+### DELETE book 
+DELETE https://offs341-05.onrender.com/books/63e55022b32c5c64282c3648

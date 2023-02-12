@@ -13,6 +13,12 @@ app
     next();
   })
   .use("/", require("./routes"));
+process.on("uncaughtException", (err, origin) => {
+  console.log(
+    process.stderr.fd,
+    `Caught exception ${err}\n` + `Exception origin: ${origin}`
+  );
+});
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
@@ -20,6 +26,7 @@ mongodb.initDb((err, mongodb) => {
   } else {
     app.listen(PORT);
     console.log(
+      "\x1b[34m%s\x1b[0m",
       `Connected to DB and listening on ${PORT}`
     );
   }
