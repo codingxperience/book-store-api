@@ -13,14 +13,15 @@ const createBook = async (req, res) => {
       pageNumber: req.body.pageNumber,
       BookGenre: req.body.BookGenre,
     };
-
     const response = await mongodb
       .getDb()
       .db()
       .collection("books")
       .insertOne(book);
     if (response.acknowledged) {
-      res.status(201).json(response);
+      res
+        .status(201)
+        .json({ success: true, id: book._id, message: "Book created!" });
     } else {
       res
         .status(500)
@@ -36,6 +37,9 @@ const createBook = async (req, res) => {
 // UPDATE book
 const updateBook = async (req, res) => {
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json("Must use a valid book id to update that book.");
+    }
     const userId = new ObjectId(req.params.id);
     // be aware of updateOne if you only want to update specific fields
     const book = {
@@ -47,15 +51,19 @@ const updateBook = async (req, res) => {
       pageNumber: req.body.pageNumber,
       BookGenre: req.body.BookGenre,
     };
-
+    if (!book) {
+      return res.status(400).json({ success: false, error: err });
+    }
     const response = await mongodb
       .getDb()
       .db()
       .collection("books")
       .replaceOne({ _id: userId }, book);
     console.log(response);
-    if (response.modifiedCount > 0) {
-      res.status(204).send(response);
+    if (response.modifiedCount >= 0) {
+      res
+        .status(204)
+        .send({ success: true, id: book._id, message: "Book updated!" });
     } else {
       res
         .status(500)
@@ -71,6 +79,9 @@ const updateBook = async (req, res) => {
 // DELETE book
 const deleteBook = async (req, res) => {
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json("Must use a valid book id to delete that book.");
+    }
     const userId = new ObjectId(req.params.id);
     const response = await mongodb
       .getDb()
@@ -93,31 +104,44 @@ const deleteBook = async (req, res) => {
 };
 
 // GET all books
-const getAllBooks = async (req, res) => {
-  try {
-    const result = await mongodb.getDb().db().collection("books").find();
-    result.toArray().then((lists) => {
+const getAllBooks = (req, res) => {
+  mongodb
+    .getDb()
+    .db()
+    .collection("books")
+    .find()
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({
+          message: err
+        });
+      }
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(lists);
-    });
-  } catch (error) {
-    res.status(500).json(error);
-  }
+    })
 };
 
 // GET single contact
-const getSingleBook = async (req, res) => {
+const getSingleBook = (req, res) => {
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      res.status(400).json("Must use a valid book id to find that book.");
+    }
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb
+    mongodb
       .getDb()
       .db()
       .collection("books")
-      .find({ _id: userId });
-    result.toArray().then((lists) => {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(lists[0]);
-    });
+      .find({ _id: userId })
+      .toArray((err, lists) => {
+        if (err) {
+          res.status(400).json({
+            message: err,
+          });
+        }
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(lists[0]);
+      });
   } catch (error) {
     res.status(500).json(error);
   }
