@@ -27,11 +27,11 @@ content-type: application/json
 } 
 
 ### PUT book 
-PUT http://localhost:3000/books/63e3ef2174a11f8a0f3da14f
+PUT  http://localhost:3000/books/63fd333b1ac722960ff656c5
 content-type: application/json
 
 {
-  "bookTitle": "To Kill a Mockingbird", 
+  "bookTitle": "Less morning bright afternoon", 
   "authorName": "Harper Lee", 
   "bookPrice": "8.67", 
   "bookEdition": "1st edition", 
@@ -41,7 +41,7 @@ content-type: application/json
 } 
 
 ### DELETE book 
-DELETE http://localhost:3000/books/63e54ddfa04d97cb5ae44278
+DELETE http://localhost:3000/books/63fd32b61ac722960ff656c4
 
 // PRODUCTION
 
@@ -49,7 +49,7 @@ DELETE http://localhost:3000/books/63e54ddfa04d97cb5ae44278
 GET https://offs341-05.onrender.com/books 
 
 ### Get One book 1
-GET https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da14f
+GET https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da150
 
 ### Get book 2 
 GET https://offs341-05.onrender.com/books/63e3ef2174a11f8a0f3da150 
