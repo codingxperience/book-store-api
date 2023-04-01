@@ -1,29 +1,18 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Book-store API",
+    "title": "My Book API",
+    "description": "An API about Books",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "offs341-05.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["https"],
   "paths": {
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
     "/books/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -81,9 +70,7 @@
     "/books/{id}": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
