@@ -5,7 +5,7 @@ const doc = {
     title: 'My API',
     description: 'Book-store API',
   },
-  host: 'https://offs341-05.onrender.com',
+  host: 'offs341-05.onrender.com',
   schemes: ['https'],
 };
 
@@ -26,7 +26,7 @@ const endpointsFiles = ['./routes/index.js'];
    // generate swagger.json
 swaggerAutogen(outputFile, endpointsFiles, doc);
 
-// run the sever after it gets generated
-swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {
-  await import('./server.js')
-});
+// // run the sever after it gets generated
+// swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {
+//   await import('./server.js')
+// });
